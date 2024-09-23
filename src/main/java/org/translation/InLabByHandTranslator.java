@@ -58,6 +58,8 @@ public class InLabByHandTranslator implements Translator {
         languageMap.put("de", "Kanada");
         languageMap.put("en", "Canada");
         languageMap.put("zh", "加拿大");
+        languageMap.put("es", "Canadá");
+        languageMap.put("th", "แคนาดา");
 
         if (!country.equals(CANADA)) {
             return null;
