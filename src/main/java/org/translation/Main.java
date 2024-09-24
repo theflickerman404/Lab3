@@ -24,8 +24,8 @@ public class Main {
         // TODO Task: once you finish the JSONTranslator,
         //            you can use it here instead of the InLabByHandTranslator
         //            to try out the whole program!
-        // Translator translator = new JSONTranslator(null);
-        Translator translator = new InLabByHandTranslator();
+        Translator translator = new JSONTranslator(null);
+        //        Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
     }
@@ -46,6 +46,7 @@ public class Main {
             // TODO Task: Once you switch promptForCountry so that it returns the country
             //            name rather than the 3-letter country code, you will need to
             //            convert it back to its 3-letter country code when calling promptForLanguage
+
             String language = promptForLanguage(translator, country);
             if (QUIT.equalsIgnoreCase(language)) {
                 break;

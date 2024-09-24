@@ -38,8 +38,8 @@ public class CountryCodeConverter {
             this.codeToCountry = new HashMap<>();
             for (String line : lines) {
                 String[] values = line.split("\t");
-                this.codeToCountry.put(values[1], values[0]);
-                this.countryToCode.put(values[0], values[1]);
+                this.codeToCountry.put(values[2], values[0]);
+                this.countryToCode.put(values[0], values[2]);
             }
         }
         catch (IOException | URISyntaxException ex) {
