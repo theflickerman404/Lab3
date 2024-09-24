@@ -33,6 +33,10 @@ public class JSONTranslator implements Translator {
      * @throws RuntimeException if the resource file can't be loaded properly
      */
     public JSONTranslator(String filename) {
+        this.countryCodes = new ArrayList<>();
+        this.countryCodesToLanguages = new HashMap<>();
+        this.countryCodesToLangaugeCodesToTranslations = new HashMap<>();
+
         // read the file to get the data to populate things...
         try {
 
@@ -48,12 +52,16 @@ public class JSONTranslator implements Translator {
 
                 // country code: alpha 3, language code alpha 2
                 Iterator<String> keys = jsonObject.keys();
+
                 ArrayList<String> languages = new ArrayList<>();
                 Map<String, String> languagesToTranslation = new HashMap<>();
+
                 while (keys.hasNext()) {
                     String key = keys.next();
-                    languages.add(key);
-                    languagesToTranslation.put(key, jsonObject.getString(key));
+                    if (!("id".equals(key) || "alpha2".equals(key) || "alpha3".equals(key))) {
+                        languages.add(key);
+                        languagesToTranslation.put(key, jsonObject.getString(key));
+                    }
                 }
                 this.countryCodesToLanguages.put(alpha3, languages);
                 this.countryCodesToLangaugeCodesToTranslations.put(alpha3, languagesToTranslation);
@@ -67,7 +75,7 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        ArrayList<String> languages = new ArrayList<>();
+        List<String> languages = new ArrayList<>();
         for (String languageCode : this.countryCodesToLanguages.get(country)) {
             languages.add(languageCode);
         }
