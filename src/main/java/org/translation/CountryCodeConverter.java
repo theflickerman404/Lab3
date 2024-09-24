@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +37,12 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
 
             this.codeToCountry = new HashMap<>();
-            for (String line : lines) {
+            this.countryToCode = new HashMap<>();
+            for (int i = 1; i < lines.size(); i++) {
+                String line = lines.get(i);
                 String[] values = line.split("\t");
-                this.codeToCountry.put(values[2], values[0]);
-                this.countryToCode.put(values[0], values[2]);
+                this.codeToCountry.put(values[2].toLowerCase(), values[0]);
+                this.countryToCode.put(values[0], values[2].toLowerCase());
             }
         }
         catch (IOException | URISyntaxException ex) {
