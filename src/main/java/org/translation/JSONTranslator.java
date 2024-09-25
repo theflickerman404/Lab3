@@ -18,7 +18,7 @@ public class JSONTranslator implements Translator {
 
     private Map<String, ArrayList<String>> countryCodesToLanguages;
     private Map<String, Map<String, String>> countryCodesToLangaugeCodesToTranslations;
-    private ArrayList<String> countryCodes;
+    private List<String> countryCodes;
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
